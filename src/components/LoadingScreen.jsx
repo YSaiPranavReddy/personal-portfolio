@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 const lines = [
   "Artificial Intelligence (AI).",
   "Full-Stack Development.",
-  "One Mind. One Vision.",
+  "One Mind, One Vision.",
 ]
 
 const WORD_FADE_MS = 350   // how long each word fades in
@@ -94,18 +94,24 @@ export default function LoadingScreen() {
         }}
       >
         {words.map((word, i) => (
-          <span
-            key={`${lineIndex}-${i}`}
-            style={{
-              display: "inline-block",
-              opacity: phase === "entering" ? 1 : 0,
-              transform: phase === "entering" ? "translateY(0px)" : "translateY(18px)",
-              transition: `opacity ${WORD_FADE_MS}ms ease, transform ${WORD_FADE_MS}ms ease`,
-              transitionDelay: phase === "entering" ? `${i * WORD_STAGGER_MS}ms` : "0ms",
-            }}
-          >
-            {word}
-          </span>
+          <>
+            <span
+              key={`${lineIndex}-${i}`}
+              style={{
+                display: "inline-block",
+                opacity: phase === "entering" ? 1 : 0,
+                transform: phase === "entering" ? "translateY(0px)" : "translateY(18px)",
+                transition: `opacity ${WORD_FADE_MS}ms ease, transform ${WORD_FADE_MS}ms ease`,
+                transitionDelay: phase === "entering" ? `${i * WORD_STAGGER_MS}ms` : "0ms",
+              }}
+            >
+              {word}
+            </span>
+            {/* Line break for mobile on "One Mind, One Vision" after "MIND," */}
+            {lineIndex === 2 && i === 1 && (
+              <span className="md:hidden w-full basis-full h-0" />
+            )}
+          </>
         ))}
       </p>
     </div>

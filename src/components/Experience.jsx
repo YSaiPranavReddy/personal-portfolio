@@ -211,7 +211,7 @@ export default function Experience() {
                                   {proj.name}
                                 </p>
                                 <p
-                                  className="text-[12px] text-white/38 leading-relaxed"
+                                  className="hidden sm:block text-[12px] text-white/38 leading-relaxed"
                                   style={{ fontFamily: 'Poppins, sans-serif' }}
                                 >
                                   {proj.description}
