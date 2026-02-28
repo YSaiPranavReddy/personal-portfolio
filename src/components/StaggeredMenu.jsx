@@ -1,6 +1,6 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { FiLinkedin, FiGithub } from 'react-icons/fi';
+import { FiLinkedin, FiGithub, FiChevronDown } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 import { heroData } from '../data/data';
 
@@ -36,6 +36,8 @@ export default function StaggeredMenu() {
 
   const textInnerRef   = useRef(null);
   const [textLines, setTextLines] = useState(['Menu', 'Close']);
+  const bubblesRef     = useRef([]);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
 
   // ── init ──────────────────────────────────────────────
   useLayoutEffect(() => {
@@ -57,11 +59,34 @@ export default function StaggeredMenu() {
     const numEls     = Array.from(panel.querySelectorAll('.sm-item-num'));
     const socialEls  = Array.from(panel.querySelectorAll('.sm-social-link'));
     const socialsHdr = panel.querySelector('.sm-socials-hdr');
+    const bubbles    = bubblesRef.current.filter(Boolean);
 
     gsap.set(itemEls,   { yPercent: 130, rotate: 8 });
     gsap.set(numEls,    { opacity: 0 });
     gsap.set(socialEls, { y: 22, opacity: 0 });
     if (socialsHdr) gsap.set(socialsHdr, { opacity: 0 });
+    
+    // Init bubbles
+    bubbles.forEach((bubble, i) => {
+      gsap.set(bubble, { scale: 0, opacity: 0 });
+      gsap.to(bubble, {
+        scale: 1,
+        opacity: 0.6,
+        duration: 0.6,
+        delay: 0.3 + i * 0.1,
+        ease: 'back.out(1.7)',
+      });
+      // Floating animation
+      gsap.to(bubble, {
+        y: `random(-30, 30)`,
+        x: `random(-20, 20)`,
+        duration: `random(3, 5)`,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: i * 0.2,
+      });
+    });
 
     const tl = gsap.timeline({
       onComplete: () => { busyRef.current = false; },
@@ -88,6 +113,11 @@ export default function StaggeredMenu() {
   const playClose = useCallback(() => {
     openTlRef.current?.kill();
     const all = [panelRef.current, preLayerARef.current, preLayerBRef.current];
+    
+    // Kill bubble animations
+    bubblesRef.current.filter(Boolean).forEach(bubble => {
+      gsap.killTweensOf(bubble);
+    });
 
     const tl = gsap.timeline({
       onComplete: () => { busyRef.current = false; },
@@ -160,6 +190,30 @@ export default function StaggeredMenu() {
     return () => window.removeEventListener('keydown', handler);
   }, [close]);
 
+  // ── Check if content is scrollable ────────────────────
+  React.useEffect(() => {
+    if (!open) return;
+    
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const checkScroll = () => {
+      const hasScroll = panel.scrollHeight > panel.clientHeight;
+      const isAtBottom = panel.scrollHeight - panel.scrollTop - panel.clientHeight < 10;
+      setShowScrollIndicator(hasScroll && !isAtBottom);
+    };
+
+    // Check initially and on scroll
+    setTimeout(checkScroll, 500);
+    panel.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+
+    return () => {
+      panel.removeEventListener('scroll', checkScroll);
+      window.removeEventListener('resize', checkScroll);
+    };
+  }, [open]);
+
   return (
     <>
       {/* toggle button is rendered inside Hero topbar — no separate header here */}
@@ -189,10 +243,32 @@ export default function StaggeredMenu() {
       <aside
         ref={panelRef}
         aria-hidden={!open}
-        className="fixed top-0 right-0 h-full w-full md:w-[480px] z-[9994] bg-[#141414] border-l border-white/[0.06] flex flex-col overflow-y-auto"
+        className="fixed top-0 right-0 h-full w-full md:w-[480px] z-[9994] bg-[#141414] border-l border-white/[0.06] flex flex-col overflow-y-auto overflow-x-hidden"
       >
+        {/* Floating bubbles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              ref={(el) => (bubblesRef.current[i] = el)}
+              className="absolute rounded-full blur-xl"
+              style={{
+                width: `${60 + i * 15}px`,
+                height: `${60 + i * 15}px`,
+                top: `${10 + i * 12}%`,
+                left: `${15 + (i % 3) * 30}%`,
+                background: [
+                  'radial-gradient(circle, rgba(139,92,246,0.15) 0%, rgba(139,92,246,0.05) 70%)',
+                  'radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(99,102,241,0.05) 70%)',
+                  'radial-gradient(circle, rgba(168,85,247,0.15) 0%, rgba(168,85,247,0.05) 70%)',
+                ][i % 3],
+              }}
+            />
+          ))}
+        </div>
+        
         {/* Panel header with close button */}
-        <div className="flex items-center justify-between px-7 md:px-14 pt-6 md:pt-7 pb-2">
+        <div className="relative z-10 flex items-center justify-between px-7 md:px-14 pt-6 md:pt-7 pb-2">
           <span className="text-[11px] uppercase tracking-[0.18em] text-white/25 font-semibold">Navigation</span>
           <button
             onClick={close}
@@ -208,7 +284,7 @@ export default function StaggeredMenu() {
         </div>
 
         {/* Nav items */}
-        <nav className="flex-1 flex flex-col justify-center px-7 md:px-14 gap-0.5 md:gap-1">
+        <nav className="relative z-10 flex-1 flex flex-col justify-center px-7 md:px-14 gap-0.5 md:gap-1">
           {NAV_ITEMS.map(({ label, id }, idx) => (
             <div key={id} className="overflow-hidden leading-none py-1">
               <button
@@ -227,10 +303,10 @@ export default function StaggeredMenu() {
         </nav>
 
         {/* Divider */}
-        <div className="mx-7 md:mx-14 h-px bg-white/[0.07]" />
+        <div className="relative z-10 mx-7 md:mx-14 h-px bg-white/[0.07]" />
 
         {/* Socials */}
-        <div className="px-7 md:px-14 py-7 md:py-9 flex flex-col gap-4">
+        <div className="relative z-10 px-7 md:px-14 py-7 md:py-9 flex flex-col gap-4">
           <p className="sm-socials-hdr text-[11px] uppercase tracking-[0.15em] text-white/30 font-semibold">
             Find me on
           </p>
@@ -247,6 +323,21 @@ export default function StaggeredMenu() {
                 {label}
               </a>
             ))}
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div 
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-none transition-opacity duration-500 z-20"
+          style={{
+            opacity: showScrollIndicator ? 1 : 0,
+          }}
+        >
+          <div className="flex flex-col items-center gap-1">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 animate-bounce">
+              <FiChevronDown size={20} className="text-white/60" />
+            </div>
+            <span className="text-[10px] text-white/40 uppercase tracking-wider">Scroll</span>
           </div>
         </div>
       </aside>

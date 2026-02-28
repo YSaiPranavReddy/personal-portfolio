@@ -171,7 +171,7 @@ export default function Contact() {
         {/* Footer line */}
         <div className="contact-animate mt-16 pt-6 border-t border-white/[0.06] text-center">
           <p
-            className="text-white/20 text-[12px]"
+            className="text-white/50 text-[12px]"
             style={{ fontFamily: "Poppins, sans-serif" }}
           >
             Designed and built by Sai Pranav Reddy

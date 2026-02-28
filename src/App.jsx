@@ -4,8 +4,8 @@ import About from "./components/About"
 import Experience from "./components/Experience"
 import Skills from "./components/Skills"
 import Projects from "./components/Projects"
+import Achievements from "./components/Achievements"
 import Contact from "./components/Contact"
-import Footer from "./components/Footer"
 import LoadingScreen from "./components/LoadingScreen"
 
 export default function App() {
@@ -19,6 +19,7 @@ export default function App() {
         <Experience />
         <Projects />
         <Skills />
+        <Achievements />
         <Contact />
       </main>
     </>

@@ -4,6 +4,7 @@ export const navLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
+  { label: "Achievements", href: "#achievements" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -27,7 +28,7 @@ export const aboutData = {
   bio: `I’m a Computer Science undergraduate at Neil Gogte Institute of Technology and currently an AI Research Intern at DrugParadigm, where I design and experiment with deep learning models for molecular and structure-aware data. My work focuses on building intelligent systems using Transformers, generative models, and advanced deep learning techniques to solve complex scientific problems.
 
 Alongside AIML, I have strong experience in Full-Stack Development (MERN) and a solid foundation in data analysis, machine learning, and data science. I enjoy combining rigorous engineering practices with intelligent systems to build solutions that are both technically sound and practically impactful.`,
-  image: "/me.jpeg", 
+  image: "/me.jpeg",
 };
 
 export const education = [
@@ -36,21 +37,21 @@ export const education = [
     institution: "Neil Gogte Institute of Technology",
     period: "2023 – Present",
     scoreLabel: "GPA",
-    gpa: "9.04",
+    gpa: ": 9.04",
   },
   {
     degree: "Intermediate (XII)",
     institution: "Sri Chaitanya Junior College",
     period: "2021 – 2023",
     scoreLabel: "Percentage",
-    gpa: "95.2%",
+    gpa: ": 95.2%",
   },
   {
     degree: "SSC (X)",
     institution: "Sri Chaitanya School",
     period: "2021",
     scoreLabel: "GPA",
-    gpa: "10.00",
+    gpa: ": 10.00",
   },
 ];
 
@@ -288,6 +289,45 @@ export const projects = [
     image: "/Ithihasya.png",
     featured: false,
     category: "fullstack",
+  },
+];
+
+export const achievements = [
+  {
+    title: "3rd Place - Udbav Hackathon 2025",
+    issuer: "KMEC",
+    date: "December 2025",
+    type: "hackathon",
+    description:
+      "Secured 3rd place in the Udbav Hackathon organized by KMEC, competing against teams from multiple institutions.",
+    credential: "",
+  },
+  {
+    title: "Top 5% - Amazon ML Challenge 2025",
+    issuer: "Amazon",
+    date: "December 2025",
+    type: "hackathon",
+    description:
+      "Secured top 5% ( 332 out of 8000 teams ) in the Amazon Machine Learning Challenge 2025, demonstrating strong proficiency in machine learning and data science.",
+    credential: "",
+  },
+  {
+    title: "OCI 2025 Certified AI Foundations Associate",
+    issuer: "Oracle",
+    date: "2025",
+    type: "certification",
+    description:
+      "Earned the OCI Certified AI Foundations Associate credential by demonstrating proficiency in AI concepts, OCI AI services, and practical application of AI solutions on Oracle Cloud.",
+    credential: "/Oracle.png",
+  },
+  {
+    title: "Data Analysis Using Python",
+    issuer: "IBM",
+    date: "2025",
+    type: "certification",
+    description:
+      "Completed the 'Data Analysis Using Python' course by IBM, covering data manipulation, analysis, and visualization techniques.",
+    credential: "/ibm.pdf",
   },
 ];
 
