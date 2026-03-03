@@ -140,8 +140,6 @@ export const skillGroups = [
       "Graph Neural Networks (GNNs)",
       "Diffusion Models",
       "OpenCV",
-      "HuggingFace",
-      "Agents (LangChain, AutoGPT)",
     ],
   },
   {
@@ -156,11 +154,9 @@ export const skillGroups = [
       "Git",
       "GitHub",
       "Docker",
-      "Linux",
       "VS Code",
       "Postman",
       "Jupyter",
-      "Figma",
     ],
   },
 ];
