@@ -167,41 +167,12 @@ export const projects = [
     title: "InversePep",
     description: "Diffusion-driven structure-based inverse folding for functional peptides",
     tags: ["PyTorch","Diffusion", "GVP-GNNs", "Transformers"], // keywords
-    pdf: "/",
+    pdf: "https://doi.org/10.1093/bib/bbag277",
     github: "", // optional repo
     demo: "https://doi.org/10.1093/bib/bbag277",
     image: "/research_image.png",
     featured: true,
     category: "research",
-  },
-  {
-    title: "Bloom - AI-Powered Plant Disease Detection",
-    useCase:
-      "Identifies crop diseases from leaf images and delivers real-time predictions to farmers.",
-    description:
-      "Bloom is an end-to-end plant disease detection system that is used to identify crop diseases from leaf images and deliver predictions",
-    details: [
-      "Built a CNN model with TensorFlow achieving ~95% classification accuracy across 38 plant disease classes.",
-      "Integrated the model into a Node.js/Express REST API that accepts image uploads and returns predictions with confidence scores.",
-      "Designed a responsive frontend (HTML/CSS/JS) with drag-and-drop image upload and animated result cards.",
-      "Persisted prediction history per user session using MongoDB.",
-      "Deployed the full application on Vercel with CI/CD pipelines for seamless updates.",
-    ],
-    tags: [
-      "TensorFlow",
-      "Convolutional Neural Networks",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Node.js",
-      "Express",
-      "MongoDB",
-    ],
-    github: "https://github.com/YSaiPranavReddy/plant-disease-detection-web",
-    demo: "https://bloom--plant-disease-detector.vercel.app/",
-    image: "/bloom.png",
-    featured: false,
-    category: ["aiml", "fullstack"],
   },
   {
     title: "NyayLens - Transformer-Based Legal QA System",
@@ -232,6 +203,35 @@ export const projects = [
     demo: "https://nyay-lens.vercel.app/",
     image: "/nyaylens.png",
     featured: true,
+    category: ["aiml", "fullstack"],
+  },
+  {
+    title: "Bloom - AI-Powered Plant Disease Detection",
+    useCase:
+      "Identifies crop diseases from leaf images and delivers real-time predictions to farmers.",
+    description:
+      "Bloom is an end-to-end plant disease detection system that is used to identify crop diseases from leaf images and deliver predictions",
+    details: [
+      "Built a CNN model with TensorFlow achieving ~95% classification accuracy across 38 plant disease classes.",
+      "Integrated the model into a Node.js/Express REST API that accepts image uploads and returns predictions with confidence scores.",
+      "Designed a responsive frontend (HTML/CSS/JS) with drag-and-drop image upload and animated result cards.",
+      "Persisted prediction history per user session using MongoDB.",
+      "Deployed the full application on Vercel with CI/CD pipelines for seamless updates.",
+    ],
+    tags: [
+      "TensorFlow",
+      "Convolutional Neural Networks",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+    ],
+    github: "https://github.com/YSaiPranavReddy/plant-disease-detection-web",
+    demo: "https://bloom--plant-disease-detector.vercel.app/",
+    image: "/bloom.png",
+    featured: false,
     category: ["aiml", "fullstack"],
   },
   {
