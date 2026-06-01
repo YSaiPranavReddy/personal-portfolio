@@ -163,17 +163,17 @@ export const skillGroups = [
 
 export const projects = [
   // Research Papers
-  // {
-  //   title: "HOPING TO RELEASE SOON",
-  //   description: "WILL UPDATE ONCE PUBLISHED",
-  //   tags: ["WILL", "UPDATE", "ONCE", "PAPER", "IS", "OUT"], // keywords
-  //   pdf: "/",
-  //   github: "", // optional repo
-  //   demo: "",
-  //   image: "",
-  //   featured: true,
-  //   category: "research",
-  // },
+  {
+    title: "InversePep",
+    description: "Diffusion-driven structure-based inverse folding for functional peptides",
+    tags: ["PyTorch","Diffusion", "GVP-GNNs", "Transformers"], // keywords
+    pdf: "/",
+    github: "", // optional repo
+    demo: "https://doi.org/10.1093/bib/bbag277",
+    image: "/research_image.png",
+    featured: true,
+    category: "research",
+  },
   {
     title: "Bloom - AI-Powered Plant Disease Detection",
     useCase:
@@ -229,9 +229,9 @@ export const projects = [
       "mySQL",
     ],
     github: "https://github.com/YSaiPranavReddy/NyayLens",
-    demo: "https://nyaylens.vercel.app/",
+    demo: "https://nyay-lens.vercel.app/",
     image: "/nyaylens.png",
-    featured: false,
+    featured: true,
     category: ["aiml", "fullstack"],
   },
   {
