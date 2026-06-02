@@ -175,6 +175,38 @@ export const projects = [
     category: "research",
   },
   {
+  title: "HireGraph - Multi-Agent AI Hiring Assistant",
+  useCase:
+    "Automates end-to-end hiring pipeline — resume screening, candidate ranking, bias detection, and personalized outreach — in under 2 minutes.",
+  description:
+    "HireGraph is a production-grade multi-agent AI hiring assistant built with LangGraph that orchestrates 7 specialized agents to replace hours of manual HR screening. Features a self-correcting Judge-Executor critique loop, team-aware candidate ranking, and real-time pipeline visualization.",
+  details: [
+    "Orchestrated 7 LangGraph agents with different LLMs — Groq 8B for parallel resume screening, Groq 70B for ranking, Gemini 2.5 Flash as an independent critique judge — eliminating self-approval bias in AI-generated rankings.",
+    "Designed evidence-based candidate scoring that distinguishes project-proven skills from listed-only skills, and team-aware ranking that scores candidates on marginal value added to existing team skill gaps.",
+    "Implemented a self-correcting critique loop with per-candidate verdict-based retry — re-scoring only flagged candidates while preserving correct scores — preventing cross-candidate score corruption.",
+    "Built real-time SSE pipeline visualization in React showing live agent execution, with FastAPI backend, Clerk JWT authentication, and bias detection on job descriptions.",
+    "Deployed on Render (FastAPI) and Vercel (React) with production reliability patterns: exponential backoff rate limiting, 4-model Gemini fallback chain, and JSON truncation recovery.",
+  ],
+  tags: [
+    "LangGraph",
+    "Python",
+    "FastAPI",
+    "React",
+    "Groq",
+    "Gemini",
+    "LangChain",
+    "Multi-Agent",
+    "JWT",
+    "SSE",
+    "Node.js",
+  ],
+  github: "https://github.com/YSaiPranavReddy/HireGraph",
+  demo: "https://hiregraph-henna.vercel.app",
+  image: "/hiregraph.png",
+  featured: true,
+  category: ["aiml", "fullstack"],
+},
+  {
     title: "NyayLens - Transformer-Based Legal QA System",
     useCase:
       "Summarizes and answers queries over legal documents using BERT and T5 transformers.",
