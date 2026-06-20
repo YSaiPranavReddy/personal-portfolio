@@ -15,7 +15,7 @@ export const heroData = {
   passion: "building clean, human-centric digital products",
   taglinePill: "Where AI and modern web meet real-world impact.",
   location: "Hyderabad, IN",
-  resume: "/Sai_Pranav_Resume.pdf",
+  resume: "/Sai_Pranav_Reddy_Resume.pdf",
   email: "saipranavreddyy09@gmail.com",
   linkedin:
     "https://www.linkedin.com/in/sai-pranav-reddy-yerrabandla-490301361/",
